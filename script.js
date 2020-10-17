@@ -36,7 +36,8 @@ function startTimer() {
     newtime.textContent = countDown;
     countDown--;
     if(countDown > -1) {
-      question0();
+      //this is where it hangs due to the above if statement.
+      question0(); 
     } else if (countDown === -1) {
       stopInterval();
     }
@@ -120,15 +121,7 @@ function startTimer() {
 //   choice3Index.textContent = questionObject[4].choices[3];
 //   answerIndex.textContent = questionObject[4].answers;
 // }
-
-
-
-
-
-
 // }
-
-
 
 var questionObject = [
 {
