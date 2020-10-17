@@ -3,38 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    
     <title>Code Quiz</title>
 </head>
 <body>
-    <header>
-        <h1>Header Here (possible bootstrap header)</h1>
-    </header>
-    <section>
-        <button type="button" id="start">Start Quiz!</button>
-        <h2>Time Remaining</h2>
-        <div class="time"></div>
+    <!-- title bar add some css/bootstrap elements -->
+    <container id="title-container">
+    <div id="title-bar">
+        <p>JavaScript Quiz</p>
+    </div>
+    </container>
+    <!-- timer -->
+    <container class="timer-container">
+        <h3 id="countDown">120</h3>
+    </container>
+    <!-- score -->
+    <container class="score-container">
+        <h3 id="score">0</h3>
+    </container>
+    <!-- start button -->
+    
+    <div>
+        <button type="button" id="start-button">Start Quiz!</button>
+    </div>
+    
+    <!-- quiz -->
+    <container class="score-container">
+        <h3 id="question-text">Questions</h3>
+        <ul id="choice-button">
+            <li>
+                <button type="button" class="choice0-text choice0-click">Answer1
+                </button>
+            </li>
+            <li>
+                <button type="button" class="choice1-text choice1-click">Answer2
+                </button>
+            </li>
+            <li>
+                <button type="button" class="choice2-text choice2-click">Answer3
+                </button>
+            </li>
+            <li>
+                <button type="button" class="choice3-text choice3-click">Answer4
+                </button>
+            </li>
+        </ul>
+        <h3 id="answer-text" type="text"></h3>
+    </container>
 
 
 
-
-
-
-    </section>
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <script src="script.js"></script>
     
 </body>
