@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Added link to the jQuery Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <!-- Added a link to Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    
     <link rel="stylesheet" href="./styles.css">
+
     
     <title>Code Quiz</title>
 </head>
@@ -31,25 +39,17 @@
     <!-- quiz -->
     <container class="score-container">
         <h3 id="question-text">Questions</h3>
-        <ul id="choice-button">
-            <li>
-                <button type="button" class="choice0-text choice0-click">Answer1
-                </button>
-            </li>
-            <li>
-                <button type="button" class="choice1-text choice1-click">Answer2
-                </button>
-            </li>
-            <li>
-                <button type="button" class="choice2-text choice2-click">Answer3
-                </button>
-            </li>
-            <li>
-                <button type="button" class="choice3-text choice3-click">Answer4
-                </button>
-            </li>
-        </ul>
-        <h3 id="answer-text" type="text"></h3>
+        <div class="card-header">
+            <button id="button-0" class="btn btn-dark clickHere" value="0">Answer1
+            </button>
+            <button id="button-1" class="btn btn-dark clickHere" value="1">Answer2
+            </button>
+            <button id="button-2" class="btn btn-dark clickHere" value="2">Answer3
+            </button>
+            <button id="button-3" class="btn btn-dark clickHere" value="3">Answer4
+            </button>
+        </div>
+        <h4 id="answer-text" type="text"></h4>
     </container>
 
 

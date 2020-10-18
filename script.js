@@ -3,14 +3,11 @@ var answerButton = document.querySelector("#answer-button");
 var newtime = document.getElementById('countDown');
 var scoreIndex = document.querySelector("#score");
 var questionIndex = document.querySelector("#question-text");
-var choice0Index = document.querySelector(".choice0-text");
-var click0Index = document.querySelector(".choice0-click");
-var choice1Index = document.querySelector(".choice1-text");
-var click1Index = document.querySelector(".choice1-click");
-var choice2Index = document.querySelector(".choice2-text");
-var click2Index = document.querySelector(".choice2-click");
-var choice3Index = document.querySelector(".choice3-text");
-var click3Index = document.querySelector(".choice3-click");
+var choice0Index = document.getElementById('button-0');
+var choice1Index = document.getElementById('button-1');
+var choice2Index = document.getElementById('button-2');
+var choice3Index = document.getElementById('button-3');
+var clickIndex = document.querySelector(".clickHere");
 var answerIndex = document.querySelector("#answer-text");
 
 
@@ -23,27 +20,73 @@ var userScore = 0;
 //original code 
 startButton.addEventListener("click", startTimer);
 
+// var questionIndex = "";
+// var choice0Index = "";
+// var choice1Index = "";
+// var choice2Index = "";
+// var choice3Index = "";
+// var answerIndex = "";
 
 function startTimer() {
-  // var questionIndex = "";
-  // var choice0Index = "";
-  // var choice1Index = "";
-  // var choice2Index = "";
-  // var choice3Index = "";
-  // var answerIndex = "";
   var timer = setInterval(function() {
     console.log(countDown);
     newtime.textContent = countDown;
     countDown--;
     if(countDown > -1) {
       //this is where it hangs due to the above if statement.
-      question0(); 
+      question1(); 
     } else if (countDown === -1) {
       stopInterval();
     }
   
   }, 1000);
   
+  function question0() {
+    // var userScore = [];
+    questionIndex.textContent = questionObject[0].question;
+    choice0Index.textContent = questionObject[0].choices[0];
+    choice1Index.textContent = questionObject[0].choices[1];
+    choice2Index.textContent = questionObject[0].choices[2];
+    choice3Index.textContent = questionObject[0].choices[3];
+    answerIndex.textContent = questionObject[0].answers;
+    
+    $(".clickHere").on("click", function() {
+      // console.log("You clicked a button!!");
+      
+      var userChoice = $(this).text()
+      console.log(userChoice)
+    
+      if ((userChoice) === (questionObject[0].choices[0])) {
+        userScore += 1;
+        scoreIndex.textContent = userScore;
+        question1();
+      } 
+    }); 
+  
+    
+  }
+    function question1() {
+      questionIndex.textContent = questionObject[1].question;
+      choice0Index.textContent = questionObject[1].choices[0];
+      choice1Index.textContent = questionObject[1].choices[1];
+      choice2Index.textContent = questionObject[1].choices[2];
+      choice3Index.textContent = questionObject[1].choices[3];
+      answerIndex.textContent = questionObject[1].answers;
+    
+      $(".clickHere").on("click", function() {
+      // console.log("You clicked a button!!");
+      
+      var userChoice = $(this).text()
+      console.log(userChoice)
+    
+      if ((userChoice) === (questionObject[1].choices[3])) {
+        userScore += 1;
+        scoreIndex.textContent = userScore;
+        question1();
+      } 
+      });
+    }
+
   var stopInterval = function() {
     console.log('time is up!');
     clearInterval(timer);
@@ -51,60 +94,25 @@ function startTimer() {
   }
 }
 
-  function question0() {
-    var userScore = [];
-    questionIndex.textContent = questionObject[0].question;
-    choice0Index.textContent = questionObject[0].choices[0];
-    choice1Index.textContent = questionObject[0].choices[1];
-    choice2Index.textContent = questionObject[0].choices[2];
-    choice3Index.textContent = questionObject[0].choices[3];
-    answerIndex.textContent = questionObject[0].answers;
-
-    click0Index.addEventListener("click", function() {
-      if (questionObject[0].choices[0] === questionObject[0].answers) {
-        userScore++;
-        scoreIndex.textContent = userScore;
-        question1();
-      } 
-
-    }); 
-  }
   
-  function question1() {
-    questionIndex.textContent = questionObject[1].question;
-    choice0Index.textContent = questionObject[1].choices[0];
-    choice1Index.textContent = questionObject[1].choices[1];
-    choice2Index.textContent = questionObject[1].choices[2];
-    choice3Index.textContent = questionObject[1].choices[3];
-    answerIndex.textContent = questionObject[1].answers;
 
-    click1Index.addEventListener("click", function() {
-      if (questionObject[1].choices[3] === questionObject[1].answers) {
-        userScore++;
-        scoreIndex.textContent = userScore;
-        // question1();
-      } 
+  // function question2() {
+  // questionIndex.textContent = questionObject[2].question;
+  // choice0Index.textContent = questionObject[2].choices[0];
+  // choice1Index.textContent = questionObject[2].choices[1];
+  // choice2Index.textContent = questionObject[2].choices[2];
+  // choice3Index.textContent = questionObject[2].choices[3];
+  // answerIndex.textContent = questionObject[2].answers;
 
-    });
-  }
+  //     click2Index.addEventListener("click", function() {
+  //     if (questionObject[2].choices[1] === questionObject[2].answers) {
+  //       userScore++;
+  //       scoreIndex.textContent = userScore;
+  //       // question1();
+  //     } 
 
-  function question2() {
-  questionIndex.textContent = questionObject[2].question;
-  choice0Index.textContent = questionObject[2].choices[0];
-  choice1Index.textContent = questionObject[2].choices[1];
-  choice2Index.textContent = questionObject[2].choices[2];
-  choice3Index.textContent = questionObject[2].choices[3];
-  answerIndex.textContent = questionObject[2].answers;
-
-      click2Index.addEventListener("click", function() {
-      if (questionObject[2].choices[1] === questionObject[2].answers) {
-        userScore++;
-        scoreIndex.textContent = userScore;
-        // question1();
-      } 
-
-    });
-}
+  //   });
+// }
 //   function question3() {
 //   questionIndex.textContent = questionObject[3].question;
 //   choice0Index.textContent = questionObject[3].choices[0];
