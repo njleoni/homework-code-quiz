@@ -12,7 +12,7 @@ https://njleoni.github.io/homework-code-quiz
 
 #### Github Repo
 
-https://github.com/njleoni/homework-password-generator
+https://github.com/njleoni/homework-code-quiz
 
 ## Screenshot
 
