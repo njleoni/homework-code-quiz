@@ -10,83 +10,35 @@ var choice3Index = document.getElementById('button-3');
 var clickIndex = document.querySelector(".clickHere");
 var answerIndex = document.querySelector("#answer-text");
 
-
 // Declared variables
-var timeReset = 15;
-var countDown = 15;
-var userScore = 0;
+var timeReset = 20;
+var countDown = 20;
+var score = 0;
+var finalScore = 0;
+var firstName = "";
+var delayInMilliseconds = 1000;
+var offset = 0;
+var incorrect = "That ain't right."
+var correct = "You are correct!"
 
 
-//original code 
+//original code kicks off timer
 startButton.addEventListener("click", startTimer);
 
-// var questionIndex = "";
-// var choice0Index = "";
-// var choice1Index = "";
-// var choice2Index = "";
-// var choice3Index = "";
-// var answerIndex = "";
-
+// tiemr function
 function startTimer() {
   var timer = setInterval(function() {
     console.log(countDown);
     newtime.textContent = countDown;
-    countDown--;
-    if(countDown > -1) {
-      //this is where it hangs due to the above if statement.
-      question1(); 
-    } else if (countDown === -1) {
+    countDown -=1;
+    if(countDown === -1 || countDown < 0) {
       stopInterval();
-    }
-  
+      complete();
+    } 
   }, 1000);
+  question0(0);
   
-  function question0() {
-    // var userScore = [];
-    questionIndex.textContent = questionObject[0].question;
-    choice0Index.textContent = questionObject[0].choices[0];
-    choice1Index.textContent = questionObject[0].choices[1];
-    choice2Index.textContent = questionObject[0].choices[2];
-    choice3Index.textContent = questionObject[0].choices[3];
-    answerIndex.textContent = questionObject[0].answers;
-    
-    $(".clickHere").on("click", function() {
-      // console.log("You clicked a button!!");
-      
-      var userChoice = $(this).text()
-      console.log(userChoice)
-    
-      if ((userChoice) === (questionObject[0].choices[0])) {
-        userScore += 1;
-        scoreIndex.textContent = userScore;
-        question1();
-      } 
-    }); 
-  
-    
-  }
-    function question1() {
-      questionIndex.textContent = questionObject[1].question;
-      choice0Index.textContent = questionObject[1].choices[0];
-      choice1Index.textContent = questionObject[1].choices[1];
-      choice2Index.textContent = questionObject[1].choices[2];
-      choice3Index.textContent = questionObject[1].choices[3];
-      answerIndex.textContent = questionObject[1].answers;
-    
-      $(".clickHere").on("click", function() {
-      // console.log("You clicked a button!!");
-      
-      var userChoice = $(this).text()
-      console.log(userChoice)
-    
-      if ((userChoice) === (questionObject[1].choices[3])) {
-        userScore += 1;
-        scoreIndex.textContent = userScore;
-        question1();
-      } 
-      });
-    }
-
+  //stops when time runs out
   var stopInterval = function() {
     console.log('time is up!');
     clearInterval(timer);
@@ -94,42 +46,142 @@ function startTimer() {
   }
 }
 
+
+//function runs first question and looking for an answer to move on to the next question
+var question0 = function() {
+  questionIndex.textContent = questionObject[0].question;
+  choice0Index.textContent = questionObject[0].choices[0];
+  choice1Index.textContent = questionObject[0].choices[1];
+  choice2Index.textContent = questionObject[0].choices[2];
+  choice3Index.textContent = questionObject[0].choices[3];
+  // questionIndex.textContent = questionObject[0].answers
+    
+    $(".clickHere").on("click", function() { 
+    var userChoice = $(this).text()
+      if ((userChoice) === (questionObject[0].choices[0])) {
+          score +=5;
+          scoreIndex.textContent = score;
+          answerIndex.textContent = correct;
+          console.log("correct")
+      } else if (((userChoice) !== (questionObject[0].choices[0]))) {
+        answerIndex.textContent = incorrect;
+        countDown -=2;
+        console.log("incorrect")
+      }
+      question1();  
+    });
+  }
   
+  //function runs first question and looking for an answer to move on to the next question
+  var question1 = function() {
+    questionIndex.textContent = questionObject[1].question;
+    choice0Index.textContent = questionObject[1].choices[0];
+    choice1Index.textContent = questionObject[1].choices[1];
+    choice2Index.textContent = questionObject[1].choices[2];
+    choice3Index.textContent = questionObject[1].choices[3];
 
-  // function question2() {
-  // questionIndex.textContent = questionObject[2].question;
-  // choice0Index.textContent = questionObject[2].choices[0];
-  // choice1Index.textContent = questionObject[2].choices[1];
-  // choice2Index.textContent = questionObject[2].choices[2];
-  // choice3Index.textContent = questionObject[2].choices[3];
-  // answerIndex.textContent = questionObject[2].answers;
+    $(".clickHere").on("click", function() {
+    var userChoice = $(this).text()
+      if ((userChoice) === (questionObject[1].choices[3])) {
+          score +=5;
+          scoreIndex.textContent = score;
+          answerIndex.textContent = correct;
+          console.log("correct")
+      } else if (((userChoice) !== (questionObject[1].choices[3]))) {
+        answerIndex.textContent = incorrect;
+        countDown -=2;
+        console.log("incorrect")
+      }
+    question2();
+    });
+    }
 
-  //     click2Index.addEventListener("click", function() {
-  //     if (questionObject[2].choices[1] === questionObject[2].answers) {
-  //       userScore++;
-  //       scoreIndex.textContent = userScore;
-  //       // question1();
-  //     } 
+  var question2 = function() {
+  questionIndex.textContent = questionObject[2].question;
+  choice0Index.textContent = questionObject[2].choices[0];
+  choice1Index.textContent = questionObject[2].choices[1];
+  choice2Index.textContent = questionObject[2].choices[2];
+  choice3Index.textContent = questionObject[2].choices[3];
+    
+    $(".clickHere").on("click", function() {
+    var userChoice = $(this).text()
+      if ((userChoice) === (questionObject[2].choices[1])) {
+          score +=5;
+          scoreIndex.textContent = score;
+          answerIndex.textContent = correct;
+          console.log("correct")
+      } else if (((userChoice) !== (questionObject[2].choices[1]))) {
+        answerIndex.textContent = incorrect;
+        countDown -=2;
+        console.log("incorrect")
+      }
+    question3();  
+    });
+  }
 
-  //   });
-// }
-//   function question3() {
-//   questionIndex.textContent = questionObject[3].question;
-//   choice0Index.textContent = questionObject[3].choices[0];
-//   choice1Index.textContent = questionObject[3].choices[1];
-//   choice2Index.textContent = questionObject[3].choices[2];
-//   choice3Index.textContent = questionObject[3].choices[3];
-//   answerIndex.textContent = questionObject[3].answers;
-// }
-//   function question4() {
-//   questionIndex.textContent = questionObject[4].question;
-//   choice0Index.textContent = questionObject[4].choices[0];
-//   choice1Index.textContent = questionObject[4].choices[1];
-//   choice2Index.textContent = questionObject[4].choices[2];
-//   choice3Index.textContent = questionObject[4].choices[3];
-//   answerIndex.textContent = questionObject[4].answers;
-// }
-// }
+  //function runs first question and looking for an answer to move on to the next question
+  var question3 = function() {
+  questionIndex.textContent = questionObject[3].question;
+  choice0Index.textContent = questionObject[3].choices[0];
+  choice1Index.textContent = questionObject[3].choices[1];
+  choice2Index.textContent = questionObject[3].choices[2];
+  choice3Index.textContent = questionObject[3].choices[3];
+    
+    $(".clickHere").on("click", function() {
+    var userChoice = $(this).text()
+      if ((userChoice) === (questionObject[3].choices[0])) {
+          score +=5;
+          scoreIndex.textContent = score;
+          answerIndex.textContent = correct;
+          console.log("correct")
+      } else if (((userChoice) !== (questionObject[3].choices[0]))) {
+        answerIndex.textContent = incorrect;
+        countDown -=2;
+        console.log("incorrect")
+      }
+      question4(); 
+    });
+  }
+
+  //function runs first question and looking for an answer to move on to the next question
+  var question4 = function() {
+  questionIndex.textContent = questionObject[4].question;
+  choice0Index.textContent = questionObject[4].choices[0];
+  choice1Index.textContent = questionObject[4].choices[1];
+  choice2Index.textContent = questionObject[4].choices[2];
+  choice3Index.textContent = questionObject[4].choices[3];
+    
+  $(".clickHere").on("click", function() {
+    var userChoice = $(this).text()
+      if ((userChoice) === (questionObject[4].choices[0])) {
+          score +=5;
+          scoreIndex.textContent = score;
+          answerIndex.textContent = correct;
+          // console.log("correct")
+          alert("That is all!")
+            
+      } else if (((userChoice) !== (questionObject[4].choices[0]))) {
+        answerIndex.textContent = incorrect;
+        countDown === 0;
+        console.log("incorrect")
+        alert("That is all!")
+      }
+    complete();
+    });
+    
+  }
+// function to complete questiosn and save name in memory
+  var offset = 0;
+  function complete() {
+    firstName = prompt("Nice job, enter your initials.")
+    finalScore = score;
+    var scores = {
+      name: firstName,
+      score: finalScore,
+    }
+    // localStorage.setItem("firstName" + key,finalScore);
+    localStorage.setItem("score",JSON.stringify(scores));
+  }
 
 var questionObject = [
 {
@@ -157,26 +209,3 @@ choices: ["perform similar action in different places of the script", "creat an 
 answers: "perform similar action in different places of the script"
 },
 ]
-
-// // questionIndex.textContent = questionObject[0].question;
-// // choice0Index.textContent = questionObject[0].choices[0];
-// // choice1Index.textContent = questionObject[0].choices[1];
-// // choice2Index.textContent = questionObject[0].choices[2];
-// // choice3Index.textContent = questionObject[0].choices[3];
-// // answerIndex.textContent = questionObject[0].answers;
-// // answerIndex.textContent = "text";
-
-
-
-
-
-
-
-
-// // if (clickevent === answer) {
-// //   alert("you are correct");
-// //   score++;
-// // } else {
-// //   score--;
-// //   // time subtract 10;
-// // }
